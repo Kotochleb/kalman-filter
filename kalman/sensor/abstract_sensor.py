@@ -1,7 +1,7 @@
 from abc import ABC
 
 class AbstracSensor(ABC):
-    def __init__(self, robot_path):
+    def __init__(self, velocity):
         raise NotImplementedError
 
     @abstractmethod

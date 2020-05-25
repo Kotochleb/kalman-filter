@@ -1,4 +1,6 @@
-from kalman.sensor import encoder, gps, imu
+from kalman.sensor.encoder import Encoder
+from kalman.sensor.gps import GPS
+from kalman.sensor.imu import IMU
 
 import numpy as np
 import copy
