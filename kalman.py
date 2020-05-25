@@ -1,13 +1,13 @@
 from kalman.sensor.encoder import Encoder
 from kalman.sensor.gps import GPS
 from kalman.sensor.imu import IMU
-from kalman.kaman_filter.kalman_filter import KalmanFilter
+from kalman.kalman_filter.kalman_filter import KalmanFilter
 from kalman.path import path
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-v = lambda x: sin(x)
+v = lambda x: np.sin(x)
 
 if __name__ == "__main__":
     RP = path.RobotPath(v, 3, 0.1)

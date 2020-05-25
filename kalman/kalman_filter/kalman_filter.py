@@ -4,8 +4,10 @@ from kalman.sensor.imu import IMU
 
 import numpy as np
 import copy
+from typing import Optional
 
 # TODO change code to look not so suspicoius
+
 
 class KalmanFilter:
     def __init__(self):
@@ -20,8 +22,6 @@ class KalmanFilter:
         ############### to trzeba ogarnac #################3
         self.noise_vel = 3
 
-
-
     def predict(self):
         ######### TODO ############
         self._F = np.array([])
@@ -32,9 +32,6 @@ class KalmanFilter:
 
         self._x = self._F @ self._x
         self._P = self._F @ self._P @ self._F.T + self._Q
-
-
-
 
     def update(self, sensor):
         K = self._P @ H.T @ np.linalg.inv(sensor.H @ self._P @ sensor.H.T + sensor.R)

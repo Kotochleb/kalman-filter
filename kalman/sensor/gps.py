@@ -1,7 +1,7 @@
 from kalman.sensor.abstract_sensor import AbstractSensor
 
-import numpy as np
 
-class Encoder(AbstractSensor):
+class GPS(AbstractSensor):
+
     def __init__(self, velocity):
-        Super().__init__()
+        super().__init__()

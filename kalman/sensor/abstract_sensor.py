@@ -1,6 +1,8 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
-class AbstracSensor(ABC):
+
+class AbstractSensor(ABC):
+
     def __init__(self, velocity):
         raise NotImplementedError
 
