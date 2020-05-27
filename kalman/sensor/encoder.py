@@ -4,4 +4,4 @@ import numpy as np
 
 class Encoder(AbstractSensor):
     def __init__(self, velocity):
-        Super().__init__()
+        super().__init__()

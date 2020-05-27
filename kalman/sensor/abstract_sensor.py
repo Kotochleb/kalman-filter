@@ -17,7 +17,7 @@ class AbstractSensor(ABC):
     @abstractmethod
     def z(self):
         """
-        Returns observatoin vector
+        Returns observation vector
         """
         raise NotImplementedError
 
