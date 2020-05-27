@@ -40,7 +40,7 @@ class AbstractSensor(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def update(self, Ts):
+    def update(self):
         """
         Updates sensor in certain time
         param Ts: time sample
@@ -52,5 +52,12 @@ class AbstractSensor(ABC):
     def _add_noise(self):
         """
         Adds noise to input signal
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def reset_data_available(self):
+        """
+        Resets sensor's data availability
         """
         raise NotImplementedError
