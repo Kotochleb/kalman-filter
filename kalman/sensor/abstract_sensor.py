@@ -4,14 +4,14 @@ from abc import ABC, abstractmethod
 class AbstractSensor(ABC):
 
     def __init__(self, velocity):
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def data_available(self):
         """
         Checks if there is available data on input buffer
         """
-        raise NotImplementedError
+        pass
 
     @property
     @abstractmethod
@@ -19,7 +19,7 @@ class AbstractSensor(ABC):
         """
         Returns observation vector
         """
-        raise NotImplementedError
+        pass
 
     @property
     @abstractmethod
@@ -28,7 +28,7 @@ class AbstractSensor(ABC):
         Returns h vector. Don't ask me da hell is this. We gotta figure out
         return h: vector
         """
-        raise NotImplementedError
+        pass
 
     @property
     @abstractmethod
@@ -37,7 +37,7 @@ class AbstractSensor(ABC):
         Returns H vector. Don't ask me da hell is this. We gotta figure out
         return H: matrix
         """
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def update(self):
@@ -46,18 +46,18 @@ class AbstractSensor(ABC):
         param Ts: time sample
         returns none
         """
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def _add_noise(self):
         """
         Adds noise to input signal
         """
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def reset_data_available(self):
         """
         Resets sensor's data availability
         """
-        raise NotImplementedError
+        pass
