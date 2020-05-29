@@ -1,7 +1,8 @@
-from kalman.sensor.abstract_sensor import AbstractSensor
+from kalman.sensor.sensor_interface import SensorInterface
 
 import numpy as np
 
+<<<<<<< HEAD
 class Encoder(AbstractSensor):
     def __init__(self, velocity, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -38,3 +39,8 @@ class Encoder(AbstractSensor):
         self.index += 1
         if self.index % self.frequency == 0:
             self.is_data_available = True
+=======
+class Encoder(SensorInterface):
+    def __init__(self, velocity):
+        super().__init__()
+>>>>>>> 6291ffc0c66b6ded10c589a79c7cd59ee8b283ee

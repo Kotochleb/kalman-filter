@@ -1,8 +1,8 @@
-from kalman.sensor.abstract_sensor import AbstractSensor
+from kalman.sensor.sensor_interface import SensorInterface
 import numpy as np
 
 
-class GPS(AbstractSensor):
+class GPS(SensorInterface):
 
     def __init__(self, velocity):
         super().__init__(velocity)
