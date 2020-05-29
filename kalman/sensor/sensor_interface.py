@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class AbstractSensor(ABC):
+class SensorInterface(ABC):
 
     def __init__(self, velocity):
         raise NotImplementedError
@@ -12,6 +12,7 @@ class AbstractSensor(ABC):
         Checks if there is available data on input buffer
         """
         raise NotImplementedError
+        
 
     @property
     @abstractmethod
