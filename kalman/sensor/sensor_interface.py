@@ -60,8 +60,5 @@ class SensorInterface(ABC):
         """
         Resets sensor's data availability
         """
-<<<<<<< HEAD:kalman/sensor/abstract_sensor.py
         pass
-=======
-        raise NotImplementedError
->>>>>>> 6291ffc0c66b6ded10c589a79c7cd59ee8b283ee:kalman/sensor/sensor_interface.py
+
