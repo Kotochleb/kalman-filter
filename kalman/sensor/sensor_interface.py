@@ -1,12 +1,12 @@
-from abc import ABC, abstractmethod
+import abc
 
 
-class SensorInterface(ABC):
+class SensorInterface(abc.ABC):
 
     def __init__(self, velocity):
         pass
 
-    @abstractmethod
+    @abc.abstractmethod
     def data_available(self):
         """
         Checks if there is available data on input buffer
@@ -14,7 +14,7 @@ class SensorInterface(ABC):
         pass
 
     @property
-    @abstractmethod
+    @abc.abstractmethod
     def z(self):
         """
         Returns observation vector
@@ -22,16 +22,15 @@ class SensorInterface(ABC):
         pass
 
     @property
-    @abstractmethod
-    def h(self):
+    @abc.abstractmethod
+    def R(self):
         """
-        Returns h vector. Don't ask me da hell is this. We gotta figure out
-        return h: vector
+        Returns R matrix of measurement noise.
         """
         pass
 
     @property
-    @abstractmethod
+    @abc.abstractmethod
     def H(self):
         """
         Returns H vector. Don't ask me da hell is this. We gotta figure out
@@ -39,7 +38,7 @@ class SensorInterface(ABC):
         """
         pass
 
-    @abstractmethod
+    @abc.abstractmethod
     def update(self):
         """
         Updates sensor in certain time
@@ -48,17 +47,16 @@ class SensorInterface(ABC):
         """
         pass
 
-    @abstractmethod
+    @abc.abstractmethod
     def _add_noise(self):
         """
         Adds noise to input signal
         """
         pass
 
-    @abstractmethod
+    @abc.abstractmethod
     def reset_data_available(self):
         """
         Resets sensor's data availability
         """
         pass
-

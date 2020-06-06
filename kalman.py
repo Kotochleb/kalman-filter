@@ -1,32 +1,32 @@
 from kalman.sensor.encoder import Encoder
 from kalman.sensor.gps import GPS
 from kalman.sensor.imu import IMU
+from kalman.sensor.dummySensor import DummySensor
 from kalman.kalman_filter.kalman_filter import KalmanFilter
 from kalman.state import state
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-v = lambda x: np.sin(x)
+v = lambda x: np.sin(0.5*x)
 
 if __name__ == "__main__":
 
     fig = plt.figure()
     ax = fig.add_subplot()
 
-    tv = np.arange(0, 3, 0.1)
-    RP = state.RobotState(function=v, time_vector=tv)
+    tv = np.arange(0, 30, 0.1)
+    RS = state.RobotState(function=v, time_vector=tv)
 
-    # TODO docelowo to bedzie w ten sposob. Chwilowo trzeba
-    # zaimplementowac czujniki wiec zostaje puste
-    # sensors = [Encoder(RP), GPS(RP), IMU(RP)]
-    sensors = []
+    # sensors = [Encoder(RS), GPS(RS), IMU(RS)]
+    sensors = [DummySensor(RS.vel_vect)]
     kf = KalmanFilter(sensors, tv)
     estimation = kf.estimate()
 
-    ax.plot(RP.time_vector, RP.vel_vect, "--", linewidth=0.8, color="grey")
-    ax.plot(RP.time_vector, estimation)
-    ax.legend(["True state", "Esymated state"])
+    ax.plot(RS.time_vector, RS.vel_vect, "--", linewidth=0.8, color="grey")
+    ax.plot(RS.time_vector, estimation, linewidth=0.6)
+    ax.plot(RS.time_vector, sensors[0].observation_in_time(), "--", linewidth=0.6)
+    ax.legend(["True state", "Estimated state", "Observation"])
     ax.axes.set_xlabel("time [s]")
     ax.axes.set_ylabel("velocity [m/s]")
     plt.show()
