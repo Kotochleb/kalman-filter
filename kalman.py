@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     ax.plot(RS.time_vector, RS.vel_vect, "--", linewidth=0.8, color="grey")
     ax.plot(RS.time_vector, estimation, linewidth=0.6)
-    ax.plot(RS.time_vector, sensors[0].observation_in_time(), "--", linewidth=0.6)
+    ax.plot(RS.time_vector[0::sensors[0].freq], sensors[0].observation_in_time()[0::sensors[0].freq], "--", linewidth=0.6)
     ax.legend(["True state", "Estimated state", "Observation"])
     ax.axes.set_xlabel("time [s]")
     ax.axes.set_ylabel("velocity [m/s]")

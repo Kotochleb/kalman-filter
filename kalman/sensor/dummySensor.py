@@ -7,7 +7,7 @@ class DummySensor(SensorInterface):
 
     def __init__(self, velocity):
         self._idx = 0
-        self._freq = 1
+        self._freq = 5
         self.is_data_available = False
         self.noise_std = 0.1
         self._x = copy.copy(velocity)
@@ -27,6 +27,10 @@ class DummySensor(SensorInterface):
     @property
     def H(self):
         return np.array([1])
+
+    @property
+    def freq(self):
+        return self._freq
 
     def observation_in_time(self):
         return self._x
