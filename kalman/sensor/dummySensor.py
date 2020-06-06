@@ -5,11 +5,11 @@ import copy
 
 class DummySensor(SensorInterface):
 
-    def __init__(self, velocity):
+    def __init__(self, velocity, freq, std):
         self._idx = 0
-        self._freq = 5
+        self._freq = freq
         self.is_data_available = False
-        self.noise_std = 0.1
+        self.noise_std = std
         self._x = copy.copy(velocity)
         self._add_noise()
 
