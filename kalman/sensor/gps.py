@@ -1,46 +1,52 @@
 from kalman.sensor.sensor_interface import SensorInterface
+from kalman.state.state import RobotState
+from scipy import integrate
 import numpy as np
 
 
 class GPS(SensorInterface):
 
-    def __init__(self, velocity):
-        super().__init__(velocity)
-        self.raw_velocity = velocity
-        self.position = np.cumsum(self.raw_velocity)
-        self.index = 0  # indeks obecnie przetwarzanej probki danych
-        self.noise_std = 1  # TODO jakie odchylenie standardowe szumu czujnika?
-        self.frequency = 2  # czestotliwosc pracy czujnika
-        self.is_data_available = True
-        self.H = np.array([1, 0])  # tak bylo na forbocie, nie wiem czy dobrze
+    def __init__(self, RS: RobotState):
+        super().__init__(RS.vel_vect)
+        self._raw_velocity = RS.vel_vect
+        self._position = integrate.cumtrapz(self._raw_velocity, initial=0)
+        self._index = 0  # indeks obecnie przetwarzanej probki danych
+        self._noise_std = 4
+        self._frequency = 10  # czestotliwosc pracy czujnika
+        self.is_data_available = False
         self._add_noise()  # dodaj szum do position
+        self._velocity = np.diff(self._position)
 
     def data_available(self) -> bool:
         return self.is_data_available
 
     @property
-    def z(self):  # nie wiem czy w getterze powinno sie definiowac property, pewnie nie
-        x_k = np.array([self.position], [self.raw_velocity])  # wektor stanu
-        self.z = np.dot(self.H, x_k) + self.noise
-        return self.z
+    def z(self):
+        return self._velocity[self._index-2]
 
     @property
-    def h(self):  # nie mam pojecia czym jest h, nie widze go na forbocie nawet
-        # TODO oblicz h i go zwroc
-        pass
+    def R(self):
+        return np.array([self._noise_std])
 
     @property
     def H(self):
-        return self.H
+        return np.array([1])
+
+    @property
+    def freq(self):
+        return self._frequency
+
+    def observation_in_time(self):
+        return self._velocity
 
     def update(self) -> None:
-        self.index += 1
-        if self.index % self.frequency == 0:
+        self._index += 1
+        if self._index % self._frequency == 0:
             self.is_data_available = True
 
     def _add_noise(self) -> None:
-        self.noise = np.random.normal(0, self.noise_std, size=self.position.size())
-        self.position += self.noise
+        self.noise = np.random.normal(0, self._noise_std, size=len(self._position))
+        self._position += self.noise
 
     def reset_data_available(self):
         self.is_data_available = False
