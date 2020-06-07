@@ -14,7 +14,7 @@ class IMU(SensorInterface):
         self.frequency = 7  # czestotliwosc pracy czujnika
         self.acceleration = np.diff(self.raw_velocity)
         self.is_data_available = False
-        self._add_noise()  # dodaj szum do position
+        self._add_noise()  # dodaj szum do acceleration
         self.vel = integrate.cumtrapz(self.acceleration, initial=0)
 
 
