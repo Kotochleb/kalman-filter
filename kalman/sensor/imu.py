@@ -10,8 +10,8 @@ class IMU(SensorInterface):
         super().__init__(RS)
         self.raw_velocity = RS.vel_vect
         self.index = 0  # indeks obecnie przetwarzanej probki danych
-        self.noise_std = 0.1 # TODO jakie odchylenie standardowe szumu czujnika?
-        self.frequency = 5  # czestotliwosc pracy czujnika
+        self.noise_std = 0.5 # TODO jakie odchylenie standardowe szumu czujnika?
+        self.frequency = 7  # czestotliwosc pracy czujnika
         self.acceleration = np.diff(self.raw_velocity)
         self.is_data_available = False
         self._add_noise()  # dodaj szum do position
@@ -27,7 +27,7 @@ class IMU(SensorInterface):
 
     @property
     def R(self):
-        return np.array([self.noise_std])
+        return np.array([self.noise_std**2])
 
     @property
     def H(self):

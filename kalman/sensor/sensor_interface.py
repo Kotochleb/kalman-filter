@@ -60,3 +60,16 @@ class SensorInterface(abc.ABC):
         Resets sensor's data availability
         """
         pass
+
+    @property
+    @abc.abstractmethod
+    def freq(self):
+        """
+        Returns sensor frequency
+        """
+
+    @abc.abstractmethod
+    def observation_in_time(self):
+        """
+        Returns sensors observaction vector in time
+        """

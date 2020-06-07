@@ -22,7 +22,7 @@ class DummySensor(SensorInterface):
 
     @property
     def R(self):
-        return np.array([self.noise_std])
+        return np.array([self.noise_std**2])
 
     @property
     def H(self):

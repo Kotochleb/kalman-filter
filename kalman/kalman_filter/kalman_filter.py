@@ -2,14 +2,15 @@ import numpy as np
 
 
 class KalmanFilter:
-    def __init__(self, sensors, time_vector, Q):
+    def __init__(self, sensors, time_vector, process_noise, dt):
         self.ts_prev = 0.0
         self._sensors = sensors
         self._time_vector = time_vector
+        self._can_predict = True
 
         self._x = np.array([0.0])
         self._P = np.array([0.5])
-        self._Q = np.array([Q])
+        self._Q = np.array([dt]) * process_noise
         self._F = np.array([1])
 
         self._P_in_time = np.zeros(len(self._time_vector))
@@ -38,7 +39,7 @@ class KalmanFilter:
 
 
     def _update(self, sensor):
-        S = sensor.H * self._P * sensor.H + sensor.R
+        S = sensor.H * self._P * sensor.H.T + sensor.R
         K = self._P * sensor.H.T * S**(-1)
         self._x = self._x + (K * (sensor.z - sensor.H * self._x))
         self._P = (1 - K * sensor.H) * self._P

@@ -11,8 +11,8 @@ class GPS(SensorInterface):
         self._raw_velocity = RS.vel_vect
         self._position = integrate.cumtrapz(self._raw_velocity, initial=0)
         self._index = 0  # indeks obecnie przetwarzanej probki danych
-        self._noise_std = 4
-        self._frequency = 10  # czestotliwosc pracy czujnika
+        self._noise_std = 0.01
+        self._frequency = 30  # czestotliwosc pracy czujnika
         self.is_data_available = False
         self._add_noise()  # dodaj szum do position
         self._velocity = np.diff(self._position)
@@ -26,7 +26,7 @@ class GPS(SensorInterface):
 
     @property
     def R(self):
-        return np.array([self._noise_std])
+        return np.array([self._noise_std**2])
 
     @property
     def H(self):
