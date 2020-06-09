@@ -9,7 +9,7 @@ class Robot:
         self._F = np.array([[1, dt],
                             [0, 1]])
 
-        self._B = np.array([[0],
+        self._B = np.array([[dt],
                             [1]])
 
         self._H = np.array([[1, 0]])

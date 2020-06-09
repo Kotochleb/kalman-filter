@@ -1,23 +1,39 @@
-# projekt-B.A.N.I.A.
-Dawo dawno temu, a właściwie to teraz było sobie kilku studentów którzy mieli zrobić projekt na statystykę. Koniec.
+# kalman-filter
 
+The project was made for statistics course at university. It's goal was to simulate one of simplest
+mobile robot's model. In this case robot was driving only in straight line. System input was it's acceleration
+and observed state was velocity.
 
-To strat program run
-`kalman.py`
+## State space matrices
 
-Buuuuuut... It's still not implemented
+Robot was represented with following matrices:
 
-# Zadania
-1. Każdy sensor kopiuje tablicę z prędkością i dodaje własny szum
-2. Plotowanie wyniku
-3. Implementacja enkodera
- - Równianie enkodera - delta po kącie przez czas i razy obwód (chyba)
- - Szum enkodera
-4. Implementacja GPS
- - Równanie GPS - delta po położeniu przez czas
- - Szum GPS
-5. Implementacja IMU
- - Równanie IMU - całeczka
- - Szum IMU
-6. Pętelka licząca klamana
-7. Ogarnąć macierze
+```math
+A = \begin{bmatrix}
+      1 & \delta t\\
+      0 & 1
+    \end{bmatrix}
+```
+
+```math
+B = \begin{bmatrix}
+      \delta t\\
+      1
+    \end{bmatrix}
+```
+
+```math
+C = [1, 0]
+```
+
+## Usage
+
+To start simulation run `kalman.py`
+
+Each sensor has its parameters inside class.
+Class `DummySensor` can be used to represent any sensor with given noise covariance and sample time.
+
+## Conclusions
+
+`IMU`, `GPS` and `Encoder` sensor implementation doesn't work as it is intended for usage with Kalman filter.
+They were designed to show thinks such as accelerometer drift. Sensor that works as it is intended for Kalman filter is `DummySensor` which have true white noise with known standard deqiation.
