@@ -15,6 +15,9 @@ A = \begin{bmatrix}
     \end{bmatrix}
 ```
 
+![equation](http://www.sciweavers.org/upload/Tex2Img_1591663436/render.png)
+
+
 ```math
 B = \begin{bmatrix}
       \delta t\\
