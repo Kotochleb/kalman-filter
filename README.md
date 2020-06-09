@@ -8,26 +8,9 @@ and observed state was velocity.
 
 Robot was represented with following matrices:
 
-```math
-A = \begin{bmatrix}
-      1 & \delta t\\
-      0 & 1
-    \end{bmatrix}
-```
-
 ![equation](http://www.sciweavers.org/upload/Tex2Img_1591663436/render.png)
-
-
-```math
-B = \begin{bmatrix}
-      \delta t\\
-      1
-    \end{bmatrix}
-```
-
-```math
-C = [1, 0]
-```
+![equation](http://www.sciweavers.org/upload/Tex2Img_1591663496/render.png)
+![equation](http://www.sciweavers.org/upload/Tex2Img_1591663511/render.png)
 
 ## Usage
 
