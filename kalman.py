@@ -15,12 +15,12 @@ v = lambda x: 0.002*(np.heaviside(x-20, 0) - np.heaviside(x-50,  0)) \
 if __name__ == "__main__":
 
     fig, axs = plt.subplots(3)
-    dt = 0.1
+    dt = 1
 
     tv = np.arange(0, 150, dt)
     rb = Robot(function=v, time_vector=tv, dt=dt)
 
-    sensors = [DummySensor(rb, 4, 1)]
+    sensors = [Encoder(rb), IMU(rb), GPS(rb)]
     kf = KalmanFilter(sensors, rb, [0.01, 0.01], 0.01, dt, use_input=True)
     estimation = kf.estimate()
 
