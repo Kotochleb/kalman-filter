@@ -29,15 +29,6 @@ class SensorInterface(abc.ABC):
         """
         pass
 
-    @property
-    @abc.abstractmethod
-    def H(self):
-        """
-        Returns H vector. Don't ask me da hell is this. We gotta figure out
-        return H: matrix
-        """
-        pass
-
     @abc.abstractmethod
     def update(self):
         """

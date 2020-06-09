@@ -1,16 +1,17 @@
 from kalman.sensor.sensor_interface import SensorInterface
-from kalman.state.state import RobotState
+from kalman.robot.robot import Robot
 import numpy as np
 from scipy import integrate
+import copy
 
 
 class IMU(SensorInterface):
 
-    def __init__(self, RS: RobotState):
-        super().__init__(RS)
-        self.raw_velocity = RS.vel_vect
+    def __init__(self, rb: Robot):
+        super().__init__(rb)
+        self.raw_velocity = copy.copy(rb.vel_vect)
         self.index = 0  # indeks obecnie przetwarzanej probki danych
-        self.noise_std = 0.5 # TODO jakie odchylenie standardowe szumu czujnika?
+        self.noise_std = 0.1 # TODO jakie odchylenie standardowe szumu czujnika?
         self.frequency = 7  # czestotliwosc pracy czujnika
         self.acceleration = np.diff(self.raw_velocity)
         self.is_data_available = False
@@ -28,10 +29,6 @@ class IMU(SensorInterface):
     @property
     def R(self):
         return np.array([self.noise_std**2])
-
-    @property
-    def H(self):
-        return np.array([1])
 
     @property
     def freq(self):

@@ -2,15 +2,15 @@ from kalman.sensor.sensor_interface import SensorInterface
 import numpy as np
 import copy
 
-
 class DummySensor(SensorInterface):
 
-    def __init__(self, velocity, freq, std):
+    def __init__(self, rb, freq, std):
         self._idx = 0
         self._freq = freq
         self.is_data_available = False
         self.noise_std = std
-        self._x = copy.copy(velocity)
+        self._x = copy.copy(rb.vel_vect)
+        # self._x = np.zeros(len(rb.vel_vect))
         self._add_noise()
 
     def data_available(self):
@@ -23,10 +23,6 @@ class DummySensor(SensorInterface):
     @property
     def R(self):
         return np.array([self.noise_std**2])
-
-    @property
-    def H(self):
-        return np.array([1])
 
     @property
     def freq(self):

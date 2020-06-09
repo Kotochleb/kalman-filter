@@ -1,17 +1,18 @@
 from kalman.sensor.sensor_interface import SensorInterface
-from kalman.state.state import RobotState
+from kalman.robot.robot import Robot
 from scipy import integrate
 import numpy as np
+import copy
 
 
 class GPS(SensorInterface):
 
-    def __init__(self, RS: RobotState):
-        super().__init__(RS.vel_vect)
-        self._raw_velocity = RS.vel_vect
+    def __init__(self, rb: Robot):
+        super().__init__(rb.vel_vect)
+        self._raw_velocity = copy.copy(rb.vel_vect)
         self._position = integrate.cumtrapz(self._raw_velocity, initial=0)
         self._index = 0  # indeks obecnie przetwarzanej probki danych
-        self._noise_std = 0.01
+        self._noise_std = 0.001
         self._frequency = 30  # czestotliwosc pracy czujnika
         self.is_data_available = False
         self._add_noise()  # dodaj szum do position
@@ -27,10 +28,6 @@ class GPS(SensorInterface):
     @property
     def R(self):
         return np.array([self._noise_std**2])
-
-    @property
-    def H(self):
-        return np.array([1])
 
     @property
     def freq(self):
