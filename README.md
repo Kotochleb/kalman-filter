@@ -9,7 +9,11 @@ and observed state was velocity.
 Robot was represented with following matrices:
 
 ![equation](http://www.sciweavers.org/upload/Tex2Img_1591663436/render.png)
+
+
 ![equation](http://www.sciweavers.org/upload/Tex2Img_1591663496/render.png)
+
+
 ![equation](http://www.sciweavers.org/upload/Tex2Img_1591663511/render.png)
 
 ## Usage
