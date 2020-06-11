@@ -8,13 +8,18 @@ and observed state was velocity.
 
 Robot was represented with following matrices:
 
-![equation](http://www.sciweavers.org/upload/Tex2Img_1591873228/eqn.png)
+<p align="center">
+
+![equation](http://www.sciweavers.org/upload/Tex2Img_1591873499/render.png)
 
 
-![equation](http://www.sciweavers.org/upload/Tex2Img_1591873262/eqn.png)
+![equation](http://www.sciweavers.org/upload/Tex2Img_1591873525/render.png)
 
 
-![equation](http://www.sciweavers.org/upload/Tex2Img_1591873303/eqn.png)
+![equation](http://www.sciweavers.org/upload/Tex2Img_1591873545/render.png)
+
+</p>
+
 
 Where d is damping.
 
