@@ -2,7 +2,7 @@ import numpy as np
 
 
 class KalmanFilter:
-    def __init__(self, sensors, robot, sigma, acc_noise, dt, use_input=True):
+    def __init__(self, sensors, robot, sigma, process_noise, dt, use_input=True):
         self.ts_prev = 0.0
         self._sensors = sensors
         self._time_vector = robot.time_vector
@@ -21,7 +21,7 @@ class KalmanFilter:
         self._G = np.array([[0.5*dt**2],
                                    [dt]])
 
-        self._Q = self._G @ self._G.T * acc_noise**2
+        self._Q = self._G @ self._G.T * process_noise**2
 
 
     def estimate(self):

@@ -2,14 +2,14 @@ import numpy as np
 
 
 class Robot:
-    def __init__(self, function, time_vector, dt):
+    def __init__(self, function, time_vector, dt, d):
         self._time_vector = time_vector
         self._system_input = function(time_vector)
 
-        self._F = np.array([[1, dt],
-                            [0, 1]])
+        self._F = np.array([[d, dt],
+                            [0, 0]])
 
-        self._B = np.array([[dt],
+        self._B = np.array([[0],
                             [1]])
 
         self._H = np.array([[1, 0]])

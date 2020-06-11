@@ -8,20 +8,18 @@ from kalman.robot.robot import Robot
 import matplotlib.pyplot as plt
 import numpy as np
 
-v = lambda x: 0.002*(np.heaviside(x-20, 0) - np.heaviside(x-50,  0)) \
-            - 0.004*(np.heaviside(x-50, 0) - np.heaviside(x-80,  0)) \
-            + 0.002*(np.heaviside(x-80, 0) - np.heaviside(x-110, 0))
-
+v = lambda x: 0.3*(np.heaviside(x-20, 0) - np.heaviside(x-50,  0))
 if __name__ == "__main__":
 
     fig, axs = plt.subplots(3)
     dt = 1
 
     tv = np.arange(0, 150, dt)
-    rb = Robot(function=v, time_vector=tv, dt=dt)
+    rb = Robot(function=v, time_vector=tv, dt=dt, d=0.95)
 
-    sensors = [Encoder(rb), IMU(rb), GPS(rb)]
-    kf = KalmanFilter(sensors, rb, [0.01, 0.01], 0.01, dt, use_input=True)
+    # sensors = [Encoder(rb), IMU(rb), GPS(rb)]
+    sensors = [DummySensor(rb, 4, 0.2), DummySensor(rb, 4, 0.3)]
+    kf = KalmanFilter(sensors, rb, [0.2, 0.2], 1, dt, use_input=True)
     estimation = kf.estimate()
 
     axs[0].plot(rb.time_vector, rb.system_input, "--", linewidth=0.4, color="black")
