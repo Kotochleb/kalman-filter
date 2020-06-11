@@ -64,3 +64,9 @@ class SensorInterface(abc.ABC):
         """
         Returns sensors observaction vector in time
         """
+
+    @abc.abstractmethod
+    def clear_counter(self):
+        """
+        Clears counter
+        """

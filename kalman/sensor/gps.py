@@ -47,3 +47,6 @@ class GPS(SensorInterface):
 
     def reset_data_available(self):
         self.is_data_available = False
+
+    def clear_counter(self):
+        self._index = 0

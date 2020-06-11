@@ -1,17 +1,18 @@
 import numpy as np
+import copy
 
 
 class KalmanFilter:
     def __init__(self, sensors, robot, sigma, process_noise, dt, use_input=True):
         self.ts_prev = 0.0
-        self._sensors = sensors
-        self._time_vector = robot.time_vector
-        self._system_input = robot.system_input
+        self._sensors = copy.copy(sensors)
+        self._time_vector = copy.copy(robot.time_vector)
+        self._system_input = copy.copy(robot.system_input)
         self._can_predict = True
         self._last_time = 0
         self._use_input = use_input
 
-        self._robot = robot
+        self._robot = copy.copy(robot)
         self._x = np.array([[0.0],
                             [0.0]])
 
@@ -22,6 +23,8 @@ class KalmanFilter:
                                    [dt]])
 
         self._Q = self._G @ self._G.T * process_noise**2
+        for sensor in sensors:
+            sensor.clear_counter()
 
 
     def estimate(self):

@@ -11,7 +11,7 @@ class IMU(SensorInterface):
         super().__init__(rb)
         self.raw_velocity = copy.copy(rb.vel_vect)
         self.index = 0  # indeks obecnie przetwarzanej probki danych
-        self.noise_std = 0.01 # TODO jakie odchylenie standardowe szumu czujnika?
+        self.noise_std = 0.05 # TODO jakie odchylenie standardowe szumu czujnika?
         self.frequency = 7  # czestotliwosc pracy czujnika
         self.acceleration = np.diff(self.raw_velocity)
         self.is_data_available = False
@@ -48,3 +48,6 @@ class IMU(SensorInterface):
 
     def reset_data_available(self):
         self.is_data_available = False
+
+    def clear_counter(self):
+        self._index = 0

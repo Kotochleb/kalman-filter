@@ -8,7 +8,7 @@ class Encoder(SensorInterface):
     def __init__(self, rb: Robot):
         super().__init__(rb.vel_vect)
         self._frequency = 3
-        self._noise_std = 0.5
+        self._noise_std = 0.3
         self._index = 0
         self._radius = 0.05 #circle's radius - 5cm
         self._velocity = rb.vel_vect
@@ -53,3 +53,6 @@ class Encoder(SensorInterface):
 
     def reset_data_available(self) -> None:
         self._is_data_available = False
+
+    def clear_counter(self):
+        self._index = 0
