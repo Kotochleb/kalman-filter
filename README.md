@@ -1,12 +1,12 @@
 # kalman-filter
 
-The project was made for statistics course at university. It's goal was to simulate one of simplest
-mobile robot's model. In this case robot was driving only in straight line. System input was it's acceleration
+The project was made for statistics course at university. Its goal was to simulate one of simplest
+mobile robot's model. In this case robot was driving only in straight line. System input was its acceleration
 and observed state was velocity.
 
 ## State space matrices
 
-Robot was represented with following matrices:
+Robot was represented by following matrices:
 
 <p align="center">
 
